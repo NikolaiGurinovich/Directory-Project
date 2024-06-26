@@ -5,6 +5,7 @@ import com.directoryproject.model.NumberInfo;
 import com.directoryproject.repository.DateInfoRepository;
 import com.directoryproject.repository.DirectoryRepository;
 import com.directoryproject.repository.NumberInfoRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class NumberInfoService {
 
@@ -39,6 +41,7 @@ public class NumberInfoService {
     public Boolean addNumber (Long id, NumberInfo numberInfo) {
         Optional<Directory> directory = directoryService.getDirectoryById(id);
         if (directory.isEmpty()) {
+            log.error("Directory not found");
             return false;
         }
         NumberInfo newNumberInfo = new NumberInfo();
@@ -55,10 +58,12 @@ public class NumberInfoService {
     public Boolean deleteNumberById(Long id) {
         Optional<NumberInfo> numberInfo = numberInfoRepository.findById(id);
         if (numberInfo.isEmpty()) {
+            log.error("Number info not found");
             return false;
         }
         Optional<Directory> directory = directoryService.getDirectoryById(numberInfo.get().getDirectoryId());
         if (directory.isEmpty()) {
+            log.error("Directory not found");
             return false;
         }
         directory.get().setUpdated(Timestamp.valueOf(LocalDateTime.now()));

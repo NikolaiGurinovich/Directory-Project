@@ -11,6 +11,7 @@ import com.directoryproject.repository.DateInfoRepository;
 import com.directoryproject.repository.DirectoryRepository;
 import com.directoryproject.repository.NumberInfoRepository;
 import com.directoryproject.repository.TextInfoRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class DirectoryService {
 
@@ -44,7 +46,10 @@ public class DirectoryService {
             directory.setCreated(Timestamp.valueOf(LocalDateTime.now()));
             directory.setUpdated(Timestamp.valueOf(LocalDateTime.now()));
             directory.setIsValid(true);
-        } else return false;
+        } else {
+            log.error("directory name is invalid or duplicated");
+            return false;
+        }
         Directory createdDirectory = directoryRepository.save(directory);
         if (createDirectoryDto.getText() != null && !createDirectoryDto.getText().isBlank()) {
             TextInfo textInfo = new TextInfo();
@@ -84,6 +89,7 @@ public class DirectoryService {
     public Optional<GetDirectoryInfoDto> getDirectoryInfoById(Long id) {
         Optional<Directory> directoryOptional = directoryRepository.findById(id);
         if (directoryOptional.isEmpty()) {
+            log.error("directory not found");
             return Optional.empty();
         }
         GetDirectoryInfoDto directoryInfoDto = new GetDirectoryInfoDto();
@@ -106,6 +112,7 @@ public class DirectoryService {
     public Boolean updateDirectoryById(Long id, UpdateDirectoryDto updateDirectoryDto) {
         Optional<Directory> directoryOptional = directoryRepository.findById(id);
         if (directoryOptional.isEmpty()) {
+            log.error("directory not found");
             return false;
         }
         Directory directory = directoryOptional.get();
@@ -120,6 +127,7 @@ public class DirectoryService {
         if (updateDirectoryDto.getNumberId() != null){
             Optional<NumberInfo> numberInfoOptional = numberInfoRepository.findById(updateDirectoryDto.getNumberId());
             if (numberInfoOptional.isEmpty()) {
+                log.error("numberInfo not found");
                 return false;
             }
             NumberInfo numberInfo = numberInfoOptional.get();
@@ -133,6 +141,7 @@ public class DirectoryService {
         if (updateDirectoryDto.getDateId() != null){
             Optional<DateInfo> dateInfoOptional = dateInfoRepository.findById(updateDirectoryDto.getDateId());
             if (dateInfoOptional.isEmpty()) {
+                log.error("dateInfo not found");
                 return false;
             }
             DateInfo dateInfo = dateInfoOptional.get();
@@ -146,6 +155,7 @@ public class DirectoryService {
         if(updateDirectoryDto.getTextId() != null){
             Optional<TextInfo> textInfoOptional = textInfoRepository.findById(updateDirectoryDto.getTextId());
             if (textInfoOptional.isEmpty()) {
+                log.error("textInfo not found");
                 return false;
             }
             TextInfo textInfo = textInfoOptional.get();
@@ -163,6 +173,7 @@ public class DirectoryService {
     public Boolean deleteDirectoryById(Long id) {
         Optional<Directory> directoryOptional = directoryRepository.findById(id);
         if (directoryOptional.isEmpty()) {
+            log.error("directory not found");
             return false;
         }
         directoryRepository.delete(directoryOptional.get());
@@ -172,6 +183,7 @@ public class DirectoryService {
     public Boolean updateDirectoryInvalid(Long id) {
         Optional<Directory> directoryOptional = directoryRepository.findById(id);
         if (directoryOptional.isEmpty()) {
+            log.error("directory not found");
             return false;
         }
         Directory directory = directoryOptional.get();
@@ -181,12 +193,14 @@ public class DirectoryService {
             Directory savedDirectory = directoryRepository.save(directory);
             return savedDirectory.equals(directoryOptional.get());
         }
+        log.error("directory is already invalid");
         return false;
     }
 
     public Boolean updateDirectoryValid(Long id) {
         Optional<Directory> directoryOptional = directoryRepository.findById(id);
         if (directoryOptional.isEmpty()) {
+            log.error("directory not found");
             return false;
         }
         Directory directory = directoryOptional.get();
@@ -196,6 +210,7 @@ public class DirectoryService {
             Directory savedDirectory = directoryRepository.save(directory);
             return savedDirectory.equals(directoryOptional.get());
         }
+        log.error("directory is already valid");
         return false;
     }
 }

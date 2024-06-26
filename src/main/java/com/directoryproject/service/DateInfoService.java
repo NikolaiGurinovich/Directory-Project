@@ -4,6 +4,7 @@ import com.directoryproject.model.DateInfo;
 import com.directoryproject.model.Directory;
 import com.directoryproject.repository.DateInfoRepository;
 import com.directoryproject.repository.DirectoryRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class DateInfoService {
 
@@ -38,6 +40,7 @@ public class DateInfoService {
     public Boolean addDateInfo(Long id, DateInfo dateInfo) {
         Optional<Directory> directory = directoryService.getDirectoryById(id);
         if (directory.isEmpty()) {
+            log.error("Directory not found");
             return false;
         }
         DateInfo newDateInfo = new DateInfo();
@@ -54,11 +57,13 @@ public class DateInfoService {
     public Boolean deleteDateInfoById(Long id) {
         Optional<DateInfo> dateInfo = dateInfoRepository.findById(id);
         if (dateInfo.isEmpty()) {
+            log.error("Date info not found");
             return false;
         }
         dateInfoRepository.deleteById(id);
         Optional<Directory> directory = directoryService.getDirectoryById(dateInfo.get().getDirectoryId());
         if (directory.isEmpty()) {
+            log.error("Directory not found");
             return false;
         }
         directory.get().setUpdated(Timestamp.valueOf(LocalDateTime.now()));

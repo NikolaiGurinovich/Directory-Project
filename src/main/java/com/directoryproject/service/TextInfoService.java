@@ -4,6 +4,7 @@ import com.directoryproject.model.Directory;
 import com.directoryproject.model.TextInfo;
 import com.directoryproject.repository.DirectoryRepository;
 import com.directoryproject.repository.TextInfoRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class TextInfoService {
 
@@ -38,6 +40,7 @@ public class TextInfoService {
     public Boolean addText(Long id, TextInfo textInfo) {
         Optional<Directory> directory = directoryService.getDirectoryById(id);
         if (directory.isEmpty()) {
+            log.error("Directory not found");
             return false;
         }
         TextInfo newTextInfo = new TextInfo();
@@ -54,11 +57,13 @@ public class TextInfoService {
     public Boolean deleteTextInfoById(Long id) {
         Optional<TextInfo> textInfo = textInfoRepository.findById(id);
         if (textInfo.isEmpty()) {
+            log.error("Text info not found");
             return false;
         }
         textInfoRepository.deleteById(id);
         Optional<Directory> directory = directoryService.getDirectoryById(textInfo.get().getDirectoryId());
         if (directory.isEmpty()) {
+            log.error("Directory not found");
             return false;
         }
         directory.get().setUpdated(Timestamp.valueOf(LocalDateTime.now()));
