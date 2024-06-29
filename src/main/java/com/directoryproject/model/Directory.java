@@ -1,6 +1,7 @@
 package com.directoryproject.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,7 @@ public class Directory {
     @Column(name = "is_valid")
     private Boolean isValid;
 
+    @NotNull
     @Column(name = "dir_name")
     private String directoryName;
 }

@@ -1,9 +1,8 @@
 package com.directoryproject.service;
 
-import com.directoryproject.model.Directory;
 import com.directoryproject.model.TextInfo;
-import com.directoryproject.repository.DirectoryRepository;
 import com.directoryproject.repository.TextInfoRepository;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,14 +18,11 @@ public class TextInfoService {
 
     private final TextInfoRepository textInfoRepository;
     private final DirectoryService directoryService;
-    private final DirectoryRepository directoryRepository;
 
     @Autowired
-    public TextInfoService(TextInfoRepository textInfoRepository, DirectoryService directoryService,
-                           DirectoryRepository directoryRepository) {
+    public TextInfoService(TextInfoRepository textInfoRepository, DirectoryService directoryService) {
         this.textInfoRepository = textInfoRepository;
         this.directoryService = directoryService;
-        this.directoryRepository = directoryRepository;
     }
 
     public List<TextInfo> getAllTextInfo() {
@@ -37,23 +33,21 @@ public class TextInfoService {
         return textInfoRepository.findById(id);
     }
 
+    @Transactional
     public Boolean addText(Long id, TextInfo textInfo) {
-        Optional<Directory> directory = directoryService.getDirectoryById(id);
-        if (directory.isEmpty()) {
-            log.error("Directory not found");
-            return false;
-        }
         TextInfo newTextInfo = new TextInfo();
         newTextInfo.setDirectoryId(id);
         newTextInfo.setText(textInfo.getText());
         newTextInfo.setCreated(Timestamp.valueOf(LocalDateTime.now()));
         newTextInfo.setUpdated(Timestamp.valueOf(LocalDateTime.now()));
         TextInfo savedTextInfo = textInfoRepository.save(newTextInfo);
-        directory.get().setUpdated(Timestamp.valueOf(LocalDateTime.now()));
-        directoryRepository.save(directory.get());
+        if (directoryService.changeUpdated(id)){
+            return false;
+        }
         return textInfoRepository.existsById(savedTextInfo.getId());
     }
 
+    @Transactional
     public Boolean deleteTextInfoById(Long id) {
         Optional<TextInfo> textInfo = textInfoRepository.findById(id);
         if (textInfo.isEmpty()) {
@@ -61,13 +55,26 @@ public class TextInfoService {
             return false;
         }
         textInfoRepository.deleteById(id);
-        Optional<Directory> directory = directoryService.getDirectoryById(textInfo.get().getDirectoryId());
-        if (directory.isEmpty()) {
-            log.error("Directory not found");
+        if (directoryService.changeUpdated(textInfo.get().getDirectoryId())){
             return false;
         }
-        directory.get().setUpdated(Timestamp.valueOf(LocalDateTime.now()));
-        directoryRepository.save(directory.get());
         return getTextInfoById(id).isEmpty();
+    }
+
+    @Transactional
+    public Boolean updateTextInfoById(Long id, TextInfo textInfo) {
+        Optional<TextInfo> textInfoOptional = textInfoRepository.findById(id);
+        if (textInfoOptional.isEmpty()) {
+            log.error("Text info not found");
+            return false;
+        }
+        TextInfo textInfoToUpdate = textInfoOptional.get();
+        textInfoToUpdate.setText(textInfo.getText());
+        textInfoToUpdate.setUpdated(Timestamp.valueOf(LocalDateTime.now()));
+        TextInfo savedTextInfo = textInfoRepository.save(textInfoToUpdate);
+        if (directoryService.changeUpdated(textInfoToUpdate.getDirectoryId())){
+            return false;
+        }
+        return savedTextInfo.equals(textInfoToUpdate);
     }
 }

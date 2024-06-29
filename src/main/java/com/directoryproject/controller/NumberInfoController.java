@@ -56,6 +56,18 @@ public class NumberInfoController {
                 ? HttpStatus.CREATED : HttpStatus.CONFLICT);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<HttpStatus> updateNumberById(@PathVariable Long id, @RequestBody NumberInfo numberInfo) {
+        log.info("start updateNumberById in NumberInfoController");
+        Optional<NumberInfo> numberInfoOptional = numberInfoService.getNumberInfoById(id);
+        if (numberInfoOptional.isEmpty()) {
+            log.error("Number info not found");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(numberInfoService.updateNumberById(id, numberInfo)
+                ? HttpStatus.NO_CONTENT : HttpStatus.CONFLICT);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteNumberById(@PathVariable Long id) {
         log.info("start deleteNumberById in NumberInfoController");

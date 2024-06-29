@@ -1,9 +1,8 @@
 package com.directoryproject.service;
 
 import com.directoryproject.model.DateInfo;
-import com.directoryproject.model.Directory;
 import com.directoryproject.repository.DateInfoRepository;
-import com.directoryproject.repository.DirectoryRepository;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,14 +18,11 @@ public class DateInfoService {
 
     private final DateInfoRepository dateInfoRepository;
     private final DirectoryService directoryService;
-    private final DirectoryRepository directoryRepository;
 
     @Autowired
-    public DateInfoService(DateInfoRepository dateInfoRepository, DirectoryService directoryService,
-                           DirectoryRepository directoryRepository) {
+    public DateInfoService(DateInfoRepository dateInfoRepository, DirectoryService directoryService) {
         this.dateInfoRepository = dateInfoRepository;
         this.directoryService = directoryService;
-        this.directoryRepository = directoryRepository;
     }
 
     public List<DateInfo> getAllDateInfo() {
@@ -37,23 +33,22 @@ public class DateInfoService {
         return dateInfoRepository.findById(id);
     }
 
+    @Transactional
     public Boolean addDateInfo(Long id, DateInfo dateInfo) {
-        Optional<Directory> directory = directoryService.getDirectoryById(id);
-        if (directory.isEmpty()) {
-            log.error("Directory not found");
-            return false;
-        }
         DateInfo newDateInfo = new DateInfo();
         newDateInfo.setDirectoryId(id);
         newDateInfo.setDate(dateInfo.getDate());
         newDateInfo.setCreated(Timestamp.valueOf(LocalDateTime.now()));
         newDateInfo.setUpdated(Timestamp.valueOf(LocalDateTime.now()));
         DateInfo savedDateInfo = dateInfoRepository.save(newDateInfo);
-        directory.get().setUpdated(Timestamp.valueOf(LocalDateTime.now()));
-        directoryRepository.save(directory.get());
+        if (directoryService.changeUpdated(id)) {
+            return false;
+        }
+
         return dateInfoRepository.existsById(savedDateInfo.getId());
     }
 
+    @Transactional
     public Boolean deleteDateInfoById(Long id) {
         Optional<DateInfo> dateInfo = dateInfoRepository.findById(id);
         if (dateInfo.isEmpty()) {
@@ -61,13 +56,25 @@ public class DateInfoService {
             return false;
         }
         dateInfoRepository.deleteById(id);
-        Optional<Directory> directory = directoryService.getDirectoryById(dateInfo.get().getDirectoryId());
-        if (directory.isEmpty()) {
-            log.error("Directory not found");
+        if (directoryService.changeUpdated(dateInfo.get().getDirectoryId()))
+            return false;
+        return dateInfoRepository.findById(id).isEmpty();
+    }
+
+    @Transactional
+    public Boolean updateDateInfoById(Long id, DateInfo dateInfo) {
+        Optional<DateInfo> dateInfoOptional = dateInfoRepository.findById(id);
+        if (dateInfoOptional.isEmpty()) {
+            log.error("Date info not found");
             return false;
         }
-        directory.get().setUpdated(Timestamp.valueOf(LocalDateTime.now()));
-        directoryRepository.save(directory.get());
-        return dateInfoRepository.findById(id).isEmpty();
+        DateInfo newDateInfo = dateInfoOptional.get();
+        newDateInfo.setDate(dateInfo.getDate());
+        newDateInfo.setUpdated(Timestamp.valueOf(LocalDateTime.now()));
+        DateInfo savedDateInfo = dateInfoRepository.save(newDateInfo);
+        if(directoryService.changeUpdated(newDateInfo.getDirectoryId())){
+            return false;
+        }
+        return savedDateInfo.equals(dateInfo);
     }
 }

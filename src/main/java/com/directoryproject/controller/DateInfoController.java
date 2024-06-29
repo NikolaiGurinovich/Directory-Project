@@ -56,6 +56,18 @@ public class DateInfoController {
                 ? HttpStatus.CREATED : HttpStatus.CONFLICT);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<HttpStatus> updateDateInfoById(@PathVariable Long id, @RequestBody DateInfo dateInfo) {
+        log.info("start updateDateInfoById in DateInfoController");
+        Optional<DateInfo> dateInfoOptional = dateInfoService.getDateInfoById(id);
+        if (dateInfoOptional.isEmpty()) {
+            log.error("DateInfo not found");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(dateInfoService.updateDateInfoById(id, dateInfo)
+                ? HttpStatus.NO_CONTENT : HttpStatus.CONFLICT);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteDateInfoById(@PathVariable Long id) {
         log.info("start deleteDateInfoById in DateInfoController");

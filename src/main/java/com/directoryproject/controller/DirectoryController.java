@@ -1,9 +1,7 @@
 package com.directoryproject.controller;
 
 import com.directoryproject.model.Directory;
-import com.directoryproject.model.dto.CreateDirectoryDto;
 import com.directoryproject.model.dto.GetDirectoryInfoDto;
-import com.directoryproject.model.dto.UpdateDirectoryDto;
 import com.directoryproject.service.DirectoryService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -28,15 +26,15 @@ public class DirectoryController {
         this.directoryService = directoryService;
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<HttpStatus> createDirectory (@RequestBody @Valid CreateDirectoryDto createDirectoryDto,
+    @PostMapping
+    public ResponseEntity<HttpStatus> createDirectory (@RequestBody @Valid Directory directory,
                                                        BindingResult bindingResult){
         log.info("Start createDirectory in DirectoryController");
         if (bindingResult.hasErrors()) {
             log.error(bindingResult.getFieldError().getDefaultMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(directoryService.createDirectory(createDirectoryDto)
+        return new ResponseEntity<>(directoryService.createDirectory(directory)
                 ? HttpStatus.CREATED : HttpStatus.CONFLICT);
     }
 
@@ -59,14 +57,14 @@ public class DirectoryController {
 
     @PutMapping("/{id}")
     public ResponseEntity<HttpStatus> updateDirectoryBuId(@PathVariable Long id,
-                                                          @RequestBody UpdateDirectoryDto updateDirectoryDto){
+                                                          @RequestBody Directory directory){
         log.info("Start updateDirectoryBuId in DirectoryController");
-        Optional<Directory> directory = directoryService.getDirectoryById(id);
-        if (directory.isEmpty()) {
+        Optional<Directory> directoryOptional = directoryService.getDirectoryById(id);
+        if (directoryOptional.isEmpty()) {
             log.error("Directory not found");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(directoryService.updateDirectoryById(id, updateDirectoryDto)
+        return new ResponseEntity<>(directoryService.updateDirectoryById(id, directory)
                 ? HttpStatus.NO_CONTENT : HttpStatus.CONFLICT);
     }
 

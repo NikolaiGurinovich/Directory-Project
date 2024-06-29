@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: create number_info table
+      author: Nikolay Gurinovich
+      changes:
+        - createTable:
+            tableName: number_info
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    unique: true
+              - column:
+                  name: dir_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: dir_id_fk
+                    referencedTableName: directory_list
+                    referencedColumnNames: id
+                    deleteCascade: true
+              - column:
+                  name: number
+                  type: double precision
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated
+                  type: timestamp
+                  constraints:
+                    nullable: false

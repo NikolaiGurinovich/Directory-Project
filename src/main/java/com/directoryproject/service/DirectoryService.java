@@ -1,16 +1,12 @@
 package com.directoryproject.service;
 
-import com.directoryproject.model.DateInfo;
 import com.directoryproject.model.Directory;
-import com.directoryproject.model.NumberInfo;
-import com.directoryproject.model.TextInfo;
-import com.directoryproject.model.dto.CreateDirectoryDto;
 import com.directoryproject.model.dto.GetDirectoryInfoDto;
-import com.directoryproject.model.dto.UpdateDirectoryDto;
 import com.directoryproject.repository.DateInfoRepository;
 import com.directoryproject.repository.DirectoryRepository;
 import com.directoryproject.repository.NumberInfoRepository;
 import com.directoryproject.repository.TextInfoRepository;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,43 +34,20 @@ public class DirectoryService {
         this.numberInfoRepository = numberInfoRepository;
     }
 
-    public Boolean createDirectory(CreateDirectoryDto createDirectoryDto) {
-        Directory directory = new Directory();
-        if (createDirectoryDto.getDirectoryName() != null &&
-                directoryRepository.findByDirectoryName(createDirectoryDto.getDirectoryName()).isEmpty() ) {
-            directory.setDirectoryName(createDirectoryDto.getDirectoryName());
-            directory.setCreated(Timestamp.valueOf(LocalDateTime.now()));
-            directory.setUpdated(Timestamp.valueOf(LocalDateTime.now()));
-            directory.setIsValid(true);
+    @Transactional
+    public Boolean createDirectory(Directory directory) {
+        Directory newDirectory = new Directory();
+        if (directory.getDirectoryName() != null &&
+                directoryRepository.findByDirectoryName(directory.getDirectoryName()).isEmpty() ) {
+            newDirectory.setDirectoryName(directory.getDirectoryName());
+            newDirectory.setCreated(Timestamp.valueOf(LocalDateTime.now()));
+            newDirectory.setUpdated(Timestamp.valueOf(LocalDateTime.now()));
+            newDirectory.setIsValid(true);
         } else {
             log.error("directory name is invalid or duplicated");
             return false;
         }
-        Directory createdDirectory = directoryRepository.save(directory);
-        if (createDirectoryDto.getText() != null && !createDirectoryDto.getText().isBlank()) {
-            TextInfo textInfo = new TextInfo();
-            textInfo.setText(createDirectoryDto.getText());
-            textInfo.setDirectoryId(directory.getId());
-            textInfo.setCreated(Timestamp.valueOf(LocalDateTime.now()));
-            textInfo.setUpdated(Timestamp.valueOf(LocalDateTime.now()));
-            textInfoRepository.save(textInfo);
-        }
-        if(createDirectoryDto.getNumber() != null){
-            NumberInfo numberInfo = new NumberInfo();
-            numberInfo.setNumber(createDirectoryDto.getNumber());
-            numberInfo.setDirectoryId(createdDirectory.getId());
-            numberInfo.setCreated(Timestamp.valueOf(LocalDateTime.now()));
-            numberInfo.setUpdated(Timestamp.valueOf(LocalDateTime.now()));
-            numberInfoRepository.save(numberInfo);
-        }
-        if(createDirectoryDto.getDate() != null) {
-            DateInfo dateInfo = new DateInfo();
-            dateInfo.setDate(createDirectoryDto.getDate());
-            dateInfo.setDirectoryId(createdDirectory.getId());
-            dateInfo.setCreated(Timestamp.valueOf(LocalDateTime.now()));
-            dateInfo.setUpdated(Timestamp.valueOf(LocalDateTime.now()));
-            dateInfoRepository.save(dateInfo);
-        }
+        Directory createdDirectory = directoryRepository.save(newDirectory);
         return getDirectoryById(createdDirectory.getId()).isPresent();
     }
 
@@ -109,64 +82,23 @@ public class DirectoryService {
         return Optional.of(directoryInfoDto);
     }
 
-    public Boolean updateDirectoryById(Long id, UpdateDirectoryDto updateDirectoryDto) {
+    @Transactional
+    public Boolean updateDirectoryById(Long id, Directory directory) {
         Optional<Directory> directoryOptional = directoryRepository.findById(id);
         if (directoryOptional.isEmpty()) {
-            log.error("directory not found");
+            log.error("newDirectory not found");
             return false;
         }
-        Directory directory = directoryOptional.get();
-        if (updateDirectoryDto.getDirectoryName() != null) {
-            directory.setDirectoryName(updateDirectoryDto.getDirectoryName());
-            directory.setUpdated(Timestamp.valueOf(LocalDateTime.now()));
+        Directory newDirectory = directoryOptional.get();
+        if (directory.getDirectoryName() != null) {
+            newDirectory.setDirectoryName(directory.getDirectoryName());
+            newDirectory.setUpdated(Timestamp.valueOf(LocalDateTime.now()));
         }
-        if (updateDirectoryDto.getIsValid() != null){
-            directory.setIsValid(updateDirectoryDto.getIsValid());
-            directory.setUpdated(Timestamp.valueOf(LocalDateTime.now()));
+        if (directory.getIsValid() != null){
+            newDirectory.setIsValid(directory.getIsValid());
+            newDirectory.setUpdated(Timestamp.valueOf(LocalDateTime.now()));
         }
-        if (updateDirectoryDto.getNumberId() != null){
-            Optional<NumberInfo> numberInfoOptional = numberInfoRepository.findById(updateDirectoryDto.getNumberId());
-            if (numberInfoOptional.isEmpty()) {
-                log.error("numberInfo not found");
-                return false;
-            }
-            NumberInfo numberInfo = numberInfoOptional.get();
-            if(updateDirectoryDto.getNumber() != null){
-                numberInfo.setNumber(updateDirectoryDto.getNumber());
-                numberInfo.setUpdated(Timestamp.valueOf(LocalDateTime.now()));
-                directory.setUpdated(Timestamp.valueOf(LocalDateTime.now()));
-                numberInfoRepository.save(numberInfo);
-            }
-        }
-        if (updateDirectoryDto.getDateId() != null){
-            Optional<DateInfo> dateInfoOptional = dateInfoRepository.findById(updateDirectoryDto.getDateId());
-            if (dateInfoOptional.isEmpty()) {
-                log.error("dateInfo not found");
-                return false;
-            }
-            DateInfo dateInfo = dateInfoOptional.get();
-            if(updateDirectoryDto.getDate() != null){
-                dateInfo.setDate(updateDirectoryDto.getDate());
-                dateInfo.setUpdated(Timestamp.valueOf(LocalDateTime.now()));
-                directory.setUpdated(Timestamp.valueOf(LocalDateTime.now()));
-                dateInfoRepository.save(dateInfo);
-            }
-        }
-        if(updateDirectoryDto.getTextId() != null){
-            Optional<TextInfo> textInfoOptional = textInfoRepository.findById(updateDirectoryDto.getTextId());
-            if (textInfoOptional.isEmpty()) {
-                log.error("textInfo not found");
-                return false;
-            }
-            TextInfo textInfo = textInfoOptional.get();
-            if(updateDirectoryDto.getText() != null){
-                textInfo.setText(updateDirectoryDto.getText());
-                textInfo.setUpdated(Timestamp.valueOf(LocalDateTime.now()));
-                directory.setUpdated(Timestamp.valueOf(LocalDateTime.now()));
-                textInfoRepository.save(textInfo);
-            }
-        }
-        Directory savedDirectory = directoryRepository.save(directory);
+        Directory savedDirectory = directoryRepository.save(newDirectory);
         return savedDirectory.equals(directoryOptional.get());
     }
 
@@ -210,7 +142,18 @@ public class DirectoryService {
             Directory savedDirectory = directoryRepository.save(directory);
             return savedDirectory.equals(directoryOptional.get());
         }
-        log.error("directory is already valid");
+        log.error("directory is already  valid");
+        return false;
+    }
+
+    public boolean changeUpdated(Long id) {
+        Optional<Directory> directory = getDirectoryById(id);
+        if (directory.isEmpty()) {
+            log.error("Directory not found");
+            return true;
+        }
+        directory.get().setUpdated(Timestamp.valueOf(LocalDateTime.now()));
+        directoryRepository.save(directory.get());
         return false;
     }
 }

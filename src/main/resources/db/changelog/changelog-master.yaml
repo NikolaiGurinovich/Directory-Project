@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changeset/create-directory_list-table.yaml
+  - include:
+      file: db/changelog/changeset/create-text_info-table.yaml
+  - include:
+      file: db/changelog/changeset/create-number_info-table.yaml
+  - include:
+      file: db/changelog/changeset/create-date_info-table.yaml

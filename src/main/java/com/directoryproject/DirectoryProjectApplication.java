@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @OpenAPIDefinition(info = @Info(
         title = "Directory Project",
-        description = "app for directory managment",
+        description = "app for directory management",
         contact = @Contact(name = "Nikolay Gurinovich",
                 email = "nikolay.gurinovich@gmail.com")
 ))

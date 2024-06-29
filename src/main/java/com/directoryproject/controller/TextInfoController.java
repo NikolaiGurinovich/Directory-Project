@@ -56,6 +56,18 @@ public class TextInfoController {
                 ? HttpStatus.CREATED : HttpStatus.CONFLICT);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<HttpStatus> updateTextInfoById(@PathVariable Long id, @RequestBody TextInfo textInfo) {
+        log.info("start updateTextInfoById in TextInfoController");
+        Optional<TextInfo> textInfoOptional = textInfoService.getTextInfoById(id);
+        if (textInfoOptional.isEmpty()) {
+            log.error("Text info not found");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(textInfoService.updateTextInfoById(id, textInfo)
+                ? HttpStatus.NO_CONTENT : HttpStatus.CONFLICT);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteTextInfoById(@PathVariable Long id) {
         log.info("start deleteTextInfoById in TextInfoController");
