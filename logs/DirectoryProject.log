@@ -238,3 +238,203 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 01-07-2024 00:15:26.469 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
 01-07-2024 00:15:26.470 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
 01-07-2024 00:15:26.472 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.
+01-07-2024 16:53:44.927 [main] INFO  c.d.DirectoryProjectApplication.logStarting - Starting DirectoryProjectApplication using Java 17.0.8 with PID 10088 (C:\Users\Николай\IdeaProjects\DirectoryProject\target\classes started by Николай in C:\Users\Николай\IdeaProjects\DirectoryProject)
+01-07-2024 16:53:44.930 [main] INFO  c.d.DirectoryProjectApplication.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+01-07-2024 16:53:45.558 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+01-07-2024 16:53:45.610 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 42 ms. Found 4 JPA repository interfaces.
+01-07-2024 16:53:45.993 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port 8080 (http)
+01-07-2024 16:53:46.003 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+01-07-2024 16:53:46.004 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/10.1.25]
+01-07-2024 16:53:46.060 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+01-07-2024 16:53:46.060 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 1092 ms
+01-07-2024 16:53:46.157 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+01-07-2024 16:53:46.307 [main] INFO  com.zaxxer.hikari.pool.HikariPool.checkFailFast - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6070775e
+01-07-2024 16:53:46.308 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+01-07-2024 16:53:46.433 [main] INFO  liquibase.database.log - Set default schema name to public
+01-07-2024 16:53:46.718 [main] INFO  liquibase.changelog.log - Reading from public.databasechangelog
+01-07-2024 16:53:46.753 [main] INFO  liquibase.ui.log - Database is up to date, no changesets to execute
+01-07-2024 16:53:46.754 [main] INFO  liquibase.changelog.log - Reading from public.databasechangelog
+01-07-2024 16:53:46.760 [main] INFO  liquibase.util.log - UPDATE SUMMARY
+01-07-2024 16:53:46.761 [main] INFO  liquibase.util.log - Run:                          0
+01-07-2024 16:53:46.761 [main] INFO  liquibase.util.log - Previously run:               4
+01-07-2024 16:53:46.761 [main] INFO  liquibase.util.log - Filtered out:                 0
+01-07-2024 16:53:46.761 [main] INFO  liquibase.util.log - -------------------------------
+01-07-2024 16:53:46.761 [main] INFO  liquibase.util.log - Total change sets:            4
+01-07-2024 16:53:46.762 [main] INFO  liquibase.util.log - Update summary generated
+01-07-2024 16:53:46.780 [main] INFO  liquibase.lockservice.log - Successfully released change log lock
+01-07-2024 16:53:46.781 [main] INFO  liquibase.command.log - Command execution complete
+01-07-2024 16:53:46.842 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+01-07-2024 16:53:46.901 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.5.2.Final
+01-07-2024 16:53:46.955 [main] INFO  o.h.c.i.RegionFactoryInitiator.initiateService - HHH000026: Second-level cache disabled
+01-07-2024 16:53:47.214 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo.addTransformer - No LoadTimeWeaver setup: ignoring JPA class transformer
+01-07-2024 16:53:47.976 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+01-07-2024 16:53:47.979 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+01-07-2024 16:53:48.313 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+01-07-2024 16:53:48.623 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port 8080 (http) with context path '/'
+01-07-2024 16:53:48.630 [main] INFO  c.d.DirectoryProjectApplication.logStarted - Started DirectoryProjectApplication in 4.034 seconds (process running for 4.576)
+01-07-2024 16:53:58.347 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring DispatcherServlet 'dispatcherServlet'
+01-07-2024 16:53:58.347 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - Initializing Servlet 'dispatcherServlet'
+01-07-2024 16:53:58.348 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean - Completed initialization in 0 ms
+01-07-2024 16:54:02.791 [http-nio-8080-exec-10] INFO  o.s.api.AbstractOpenApiResource.getOpenApi - Init duration for springdoc-openapi is: 208 ms
+01-07-2024 17:20:22.277 [main] INFO  c.d.DirectoryProjectApplicationTests.logStarting - Starting DirectoryProjectApplicationTests using Java 17.0.8 with PID 23200 (started by Николай in C:\Users\Николай\IdeaProjects\DirectoryProject)
+01-07-2024 17:20:22.279 [main] INFO  c.d.DirectoryProjectApplicationTests.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+01-07-2024 17:20:23.244 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+01-07-2024 17:20:23.303 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 50 ms. Found 4 JPA repository interfaces.
+01-07-2024 17:20:23.885 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+01-07-2024 17:20:24.074 [main] INFO  com.zaxxer.hikari.pool.HikariPool.checkFailFast - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@36359723
+01-07-2024 17:20:24.076 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+01-07-2024 17:20:24.286 [main] INFO  liquibase.database.log - Set default schema name to public
+01-07-2024 17:20:24.697 [main] INFO  liquibase.changelog.log - Reading from public.databasechangelog
+01-07-2024 17:20:24.736 [main] INFO  liquibase.ui.log - Database is up to date, no changesets to execute
+01-07-2024 17:20:24.737 [main] INFO  liquibase.changelog.log - Reading from public.databasechangelog
+01-07-2024 17:20:24.744 [main] INFO  liquibase.util.log - UPDATE SUMMARY
+01-07-2024 17:20:24.744 [main] INFO  liquibase.util.log - Run:                          0
+01-07-2024 17:20:24.744 [main] INFO  liquibase.util.log - Previously run:               4
+01-07-2024 17:20:24.745 [main] INFO  liquibase.util.log - Filtered out:                 0
+01-07-2024 17:20:24.745 [main] INFO  liquibase.util.log - -------------------------------
+01-07-2024 17:20:24.745 [main] INFO  liquibase.util.log - Total change sets:            4
+01-07-2024 17:20:24.746 [main] INFO  liquibase.util.log - Update summary generated
+01-07-2024 17:20:24.764 [main] INFO  liquibase.lockservice.log - Successfully released change log lock
+01-07-2024 17:20:24.766 [main] INFO  liquibase.command.log - Command execution complete
+01-07-2024 17:20:24.917 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+01-07-2024 17:20:25.040 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.5.2.Final
+01-07-2024 17:20:25.078 [main] INFO  o.h.c.i.RegionFactoryInitiator.initiateService - HHH000026: Second-level cache disabled
+01-07-2024 17:20:25.359 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo.addTransformer - No LoadTimeWeaver setup: ignoring JPA class transformer
+01-07-2024 17:20:26.154 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+01-07-2024 17:20:26.157 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+01-07-2024 17:20:26.836 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+01-07-2024 17:20:27.661 [main] INFO  c.d.DirectoryProjectApplicationTests.logStarted - Started DirectoryProjectApplicationTests in 5.661 seconds (process running for 6.651)
+01-07-2024 17:20:28.703 [main] ERROR c.d.service.DirectoryService.deleteDirectoryById - directory not found
+01-07-2024 17:20:28.787 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+01-07-2024 17:20:28.793 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
+01-07-2024 17:20:28.800 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.
+01-07-2024 17:42:51.330 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+01-07-2024 17:42:51.332 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
+01-07-2024 17:42:51.333 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.
+01-07-2024 17:43:01.955 [main] INFO  c.d.DirectoryProjectApplication.logStarting - Starting DirectoryProjectApplication using Java 17.0.8 with PID 23540 (C:\Users\Николай\IdeaProjects\DirectoryProject\target\classes started by Николай in C:\Users\Николай\IdeaProjects\DirectoryProject)
+01-07-2024 17:43:01.958 [main] INFO  c.d.DirectoryProjectApplication.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+01-07-2024 17:43:02.471 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+01-07-2024 17:43:02.515 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 38 ms. Found 4 JPA repository interfaces.
+01-07-2024 17:43:02.848 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port 8080 (http)
+01-07-2024 17:43:02.856 [main] INFO  o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+01-07-2024 17:43:02.856 [main] INFO  o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/10.1.25]
+01-07-2024 17:43:02.906 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+01-07-2024 17:43:02.907 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 913 ms
+01-07-2024 17:43:02.996 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+01-07-2024 17:43:03.116 [main] INFO  com.zaxxer.hikari.pool.HikariPool.checkFailFast - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6070775e
+01-07-2024 17:43:03.118 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+01-07-2024 17:43:03.219 [main] INFO  liquibase.database.log - Set default schema name to public
+01-07-2024 17:43:03.472 [main] INFO  liquibase.changelog.log - Reading from public.databasechangelog
+01-07-2024 17:43:03.504 [main] INFO  liquibase.ui.log - Database is up to date, no changesets to execute
+01-07-2024 17:43:03.505 [main] INFO  liquibase.changelog.log - Reading from public.databasechangelog
+01-07-2024 17:43:03.511 [main] INFO  liquibase.util.log - UPDATE SUMMARY
+01-07-2024 17:43:03.511 [main] INFO  liquibase.util.log - Run:                          0
+01-07-2024 17:43:03.511 [main] INFO  liquibase.util.log - Previously run:               4
+01-07-2024 17:43:03.512 [main] INFO  liquibase.util.log - Filtered out:                 0
+01-07-2024 17:43:03.512 [main] INFO  liquibase.util.log - -------------------------------
+01-07-2024 17:43:03.512 [main] INFO  liquibase.util.log - Total change sets:            4
+01-07-2024 17:43:03.512 [main] INFO  liquibase.util.log - Update summary generated
+01-07-2024 17:43:03.526 [main] INFO  liquibase.lockservice.log - Successfully released change log lock
+01-07-2024 17:43:03.528 [main] INFO  liquibase.command.log - Command execution complete
+01-07-2024 17:43:03.583 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+01-07-2024 17:43:03.627 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.5.2.Final
+01-07-2024 17:43:03.652 [main] INFO  o.h.c.i.RegionFactoryInitiator.initiateService - HHH000026: Second-level cache disabled
+01-07-2024 17:43:03.869 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo.addTransformer - No LoadTimeWeaver setup: ignoring JPA class transformer
+01-07-2024 17:43:04.556 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+01-07-2024 17:43:04.558 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+01-07-2024 17:43:04.862 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+01-07-2024 17:43:05.135 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port 8080 (http) with context path '/'
+01-07-2024 17:43:05.142 [main] INFO  c.d.DirectoryProjectApplication.logStarted - Started DirectoryProjectApplication in 3.498 seconds (process running for 3.942)
+01-07-2024 18:05:20.733 [main] INFO  c.d.DirectoryProjectApplicationTests.logStarting - Starting DirectoryProjectApplicationTests using Java 17.0.8 with PID 12024 (started by Николай in C:\Users\Николай\IdeaProjects\DirectoryProject)
+01-07-2024 18:05:20.735 [main] INFO  c.d.DirectoryProjectApplicationTests.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+01-07-2024 18:05:21.698 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+01-07-2024 18:05:21.754 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 48 ms. Found 4 JPA repository interfaces.
+01-07-2024 18:05:22.314 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+01-07-2024 18:05:22.521 [main] INFO  com.zaxxer.hikari.pool.HikariPool.checkFailFast - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@36359723
+01-07-2024 18:05:22.523 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+01-07-2024 18:05:22.723 [main] INFO  liquibase.database.log - Set default schema name to public
+01-07-2024 18:05:23.206 [main] INFO  liquibase.changelog.log - Reading from public.databasechangelog
+01-07-2024 18:05:23.259 [main] INFO  liquibase.ui.log - Database is up to date, no changesets to execute
+01-07-2024 18:05:23.261 [main] INFO  liquibase.changelog.log - Reading from public.databasechangelog
+01-07-2024 18:05:23.269 [main] INFO  liquibase.util.log - UPDATE SUMMARY
+01-07-2024 18:05:23.269 [main] INFO  liquibase.util.log - Run:                          0
+01-07-2024 18:05:23.269 [main] INFO  liquibase.util.log - Previously run:               4
+01-07-2024 18:05:23.270 [main] INFO  liquibase.util.log - Filtered out:                 0
+01-07-2024 18:05:23.270 [main] INFO  liquibase.util.log - -------------------------------
+01-07-2024 18:05:23.270 [main] INFO  liquibase.util.log - Total change sets:            4
+01-07-2024 18:05:23.271 [main] INFO  liquibase.util.log - Update summary generated
+01-07-2024 18:05:23.292 [main] INFO  liquibase.lockservice.log - Successfully released change log lock
+01-07-2024 18:05:23.294 [main] INFO  liquibase.command.log - Command execution complete
+01-07-2024 18:05:23.401 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+01-07-2024 18:05:23.476 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.5.2.Final
+01-07-2024 18:05:23.523 [main] INFO  o.h.c.i.RegionFactoryInitiator.initiateService - HHH000026: Second-level cache disabled
+01-07-2024 18:05:23.818 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo.addTransformer - No LoadTimeWeaver setup: ignoring JPA class transformer
+01-07-2024 18:05:24.617 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+01-07-2024 18:05:24.620 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+01-07-2024 18:05:25.278 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+01-07-2024 18:05:26.030 [main] INFO  c.d.DirectoryProjectApplicationTests.logStarted - Started DirectoryProjectApplicationTests in 5.566 seconds (process running for 6.534)
+01-07-2024 18:05:27.018 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+01-07-2024 18:05:27.025 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
+01-07-2024 18:05:27.031 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.
+01-07-2024 18:19:48.167 [main] INFO  c.d.DirectoryProjectApplicationTests.logStarting - Starting DirectoryProjectApplicationTests using Java 17.0.8 with PID 20584 (started by Николай in C:\Users\Николай\IdeaProjects\DirectoryProject)
+01-07-2024 18:19:48.169 [main] INFO  c.d.DirectoryProjectApplicationTests.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+01-07-2024 18:19:49.109 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+01-07-2024 18:19:49.163 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 45 ms. Found 4 JPA repository interfaces.
+01-07-2024 18:19:49.720 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+01-07-2024 18:19:49.918 [main] INFO  com.zaxxer.hikari.pool.HikariPool.checkFailFast - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@373afd6c
+01-07-2024 18:19:49.919 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+01-07-2024 18:19:50.119 [main] INFO  liquibase.database.log - Set default schema name to public
+01-07-2024 18:19:50.550 [main] INFO  liquibase.changelog.log - Reading from public.databasechangelog
+01-07-2024 18:19:50.590 [main] INFO  liquibase.ui.log - Database is up to date, no changesets to execute
+01-07-2024 18:19:50.593 [main] INFO  liquibase.changelog.log - Reading from public.databasechangelog
+01-07-2024 18:19:50.601 [main] INFO  liquibase.util.log - UPDATE SUMMARY
+01-07-2024 18:19:50.601 [main] INFO  liquibase.util.log - Run:                          0
+01-07-2024 18:19:50.601 [main] INFO  liquibase.util.log - Previously run:               4
+01-07-2024 18:19:50.602 [main] INFO  liquibase.util.log - Filtered out:                 0
+01-07-2024 18:19:50.602 [main] INFO  liquibase.util.log - -------------------------------
+01-07-2024 18:19:50.602 [main] INFO  liquibase.util.log - Total change sets:            4
+01-07-2024 18:19:50.603 [main] INFO  liquibase.util.log - Update summary generated
+01-07-2024 18:19:50.627 [main] INFO  liquibase.lockservice.log - Successfully released change log lock
+01-07-2024 18:19:50.631 [main] INFO  liquibase.command.log - Command execution complete
+01-07-2024 18:19:50.741 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+01-07-2024 18:19:50.825 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.5.2.Final
+01-07-2024 18:19:50.865 [main] INFO  o.h.c.i.RegionFactoryInitiator.initiateService - HHH000026: Second-level cache disabled
+01-07-2024 18:19:51.129 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo.addTransformer - No LoadTimeWeaver setup: ignoring JPA class transformer
+01-07-2024 18:19:51.891 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+01-07-2024 18:19:51.894 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+01-07-2024 18:19:52.524 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+01-07-2024 18:19:53.303 [main] INFO  c.d.DirectoryProjectApplicationTests.logStarted - Started DirectoryProjectApplicationTests in 5.391 seconds (process running for 6.405)
+01-07-2024 18:19:54.349 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+01-07-2024 18:19:54.355 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
+01-07-2024 18:19:54.362 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.
+01-07-2024 19:35:59.112 [main] INFO  c.d.DirectoryProjectApplicationTests.logStarting - Starting DirectoryProjectApplicationTests using Java 17.0.8 with PID 17200 (started by Николай in C:\Users\Николай\IdeaProjects\DirectoryProject)
+01-07-2024 19:35:59.114 [main] INFO  c.d.DirectoryProjectApplicationTests.logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+01-07-2024 19:36:00.063 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+01-07-2024 19:36:00.114 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 43 ms. Found 4 JPA repository interfaces.
+01-07-2024 19:36:00.616 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+01-07-2024 19:36:00.822 [main] INFO  com.zaxxer.hikari.pool.HikariPool.checkFailFast - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@55e1192
+01-07-2024 19:36:00.824 [main] INFO  com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+01-07-2024 19:36:01.012 [main] INFO  liquibase.database.log - Set default schema name to public
+01-07-2024 19:36:01.468 [main] INFO  liquibase.changelog.log - Reading from public.databasechangelog
+01-07-2024 19:36:01.508 [main] INFO  liquibase.ui.log - Database is up to date, no changesets to execute
+01-07-2024 19:36:01.510 [main] INFO  liquibase.changelog.log - Reading from public.databasechangelog
+01-07-2024 19:36:01.517 [main] INFO  liquibase.util.log - UPDATE SUMMARY
+01-07-2024 19:36:01.518 [main] INFO  liquibase.util.log - Run:                          0
+01-07-2024 19:36:01.518 [main] INFO  liquibase.util.log - Previously run:               4
+01-07-2024 19:36:01.518 [main] INFO  liquibase.util.log - Filtered out:                 0
+01-07-2024 19:36:01.518 [main] INFO  liquibase.util.log - -------------------------------
+01-07-2024 19:36:01.518 [main] INFO  liquibase.util.log - Total change sets:            4
+01-07-2024 19:36:01.519 [main] INFO  liquibase.util.log - Update summary generated
+01-07-2024 19:36:01.537 [main] INFO  liquibase.lockservice.log - Successfully released change log lock
+01-07-2024 19:36:01.539 [main] INFO  liquibase.command.log - Command execution complete
+01-07-2024 19:36:01.631 [main] INFO  o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+01-07-2024 19:36:01.799 [main] INFO  org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 6.5.2.Final
+01-07-2024 19:36:01.841 [main] INFO  o.h.c.i.RegionFactoryInitiator.initiateService - HHH000026: Second-level cache disabled
+01-07-2024 19:36:02.120 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo.addTransformer - No LoadTimeWeaver setup: ignoring JPA class transformer
+01-07-2024 19:36:02.904 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+01-07-2024 19:36:02.907 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+01-07-2024 19:36:03.536 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+01-07-2024 19:36:04.403 [main] INFO  c.d.DirectoryProjectApplicationTests.logStarted - Started DirectoryProjectApplicationTests in 5.563 seconds (process running for 6.543)
+01-07-2024 19:36:05.656 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean.destroy - Closing JPA EntityManagerFactory for persistence unit 'default'
+01-07-2024 19:36:05.663 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown initiated...
+01-07-2024 19:36:05.673 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource.close - HikariPool-1 - Shutdown completed.

@@ -2,9 +2,8 @@ package com.directoryproject.service;
 
 import com.directoryproject.model.Directory;
 import com.directoryproject.repository.DirectoryRepository;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,7 +16,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
 
 @ExtendWith(MockitoExtension.class)
 public class DirectoryServiceTest {
@@ -30,8 +28,8 @@ public class DirectoryServiceTest {
 
     private static List<Directory> directories = new ArrayList<>();
 
-    @BeforeAll
-    public static void beforeAll(){
+    @BeforeEach
+    public void beforeAll(){
        Directory firstDirectory = new Directory();
        firstDirectory.setDirectoryName("first directory");
        firstDirectory.setId(1L);
@@ -39,7 +37,7 @@ public class DirectoryServiceTest {
        Directory secondDirectory = new Directory();
        secondDirectory.setDirectoryName("second directory");
        secondDirectory.setId(2L);
-       secondDirectory.setIsValid(true);
+       secondDirectory.setIsValid(false);
        directories.add(firstDirectory);
        directories.add(secondDirectory);
     }
@@ -51,6 +49,7 @@ public class DirectoryServiceTest {
 
         Assertions.assertNotNull(result);
         Assertions.assertEquals(directories.size(), result.size());
+        Mockito.verify(directoryRepository, Mockito.times(1)).findAll();
     }
 
     @Test
@@ -61,6 +60,7 @@ public class DirectoryServiceTest {
 
         Assertions.assertNotNull(result);
         Assertions.assertEquals(directoryTest, result.get());
+        Mockito.verify(directoryRepository, Mockito.times(1)).findById(directoryTest.getId());
     }
 
     @Test
@@ -71,11 +71,53 @@ public class DirectoryServiceTest {
         Mockito.verify(directoryRepository, Mockito.times(1)).save(any());
     }
 
-    /*@Test
+    @Test
     public void testDeleteDirectoryById() {
-        Mockito.when(directoryService.getDirectoryById(anyLong())).thenReturn(Optional.of(directories.get(0)));
+        Mockito.when(directoryRepository.findById(directories.get(0).getId())).
+                thenReturn(Optional.of(directories.get(0)));
         directoryService.deleteDirectoryById(directories.get(0).getId());
 
-        Mockito.verify(directoryRepository, Mockito.times(1)).deleteById(1L);
-    }*/
+        Mockito.verify(directoryRepository, Mockito.times(1)).delete(directories.get(0));
+    }
+
+    @Test
+    public void testUpdateDirectoryById() {
+        Mockito.when(directoryRepository.findById(directories.get(0).getId())).
+                thenReturn(Optional.of(directories.get(0)));
+        Mockito.when(directoryRepository.save(any())).thenReturn(directories.get(0));
+        directoryService.updateDirectoryById(directories.get(0).getId(), directories.get(1));
+
+        Mockito.verify(directoryRepository, Mockito.times(1)).save(any(Directory.class));
+    }
+
+    @Test
+    public void testUpdateDirectoryInvalid() {
+        Mockito.when(directoryRepository.findById(directories.get(0).getId())).
+                thenReturn(Optional.of(directories.get(0)));
+        Mockito.when(directoryRepository.save(any())).thenReturn(directories.get(0));
+        directoryService.updateDirectoryInvalid(directories.get(0).getId());
+
+        Mockito.verify(directoryRepository, Mockito.times(1)).save(any(Directory.class));
+        Assertions.assertFalse(directories.get(0).getIsValid());
+    }
+
+    @Test
+    public void testUpdateDirectoryValid() {
+        Mockito.when(directoryRepository.findById(directories.get(1).getId())).
+                thenReturn(Optional.of(directories.get(1)));
+        Mockito.when(directoryRepository.save(any())).thenReturn(directories.get(1));
+        directoryService.updateDirectoryValid(directories.get(1).getId());
+
+        Mockito.verify(directoryRepository, Mockito.times(1)).save(any(Directory.class));
+        Assertions.assertTrue(directories.get(1).getIsValid());
+    }
+
+    @Test
+    public void testChangeUpdated(){
+        Mockito.when(directoryRepository.findById(directories.get(0).getId())).
+                thenReturn(Optional.of(directories.get(0)));
+        directoryService.changeUpdated(directories.get(0).getId());
+
+        Mockito.verify(directoryRepository, Mockito.times(1)).save(any(Directory.class));
+    }
 }
