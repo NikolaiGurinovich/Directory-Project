@@ -80,11 +80,11 @@ public class DirectoryController {
                     "new directory name in dody, app updates name of target directory and set Updated time"
     )
     @PutMapping("/{id}")
-    public ResponseEntity<HttpStatus> updateDirectoryBuId(@PathVariable
+    public ResponseEntity<HttpStatus> updateDirectoryById(@PathVariable
                                                               @Parameter(description = "The id of target directory")
                                                               Long id,
                                                           @Parameter(description = "Model with new name")
-                                                          @RequestBody Directory directory){
+                                                          @RequestBody @Valid Directory directory){
         log.info("Start updateDirectoryBuId in DirectoryController");
         Optional<Directory> directoryOptional = directoryService.getDirectoryById(id);
         if (directoryOptional.isEmpty()) {
